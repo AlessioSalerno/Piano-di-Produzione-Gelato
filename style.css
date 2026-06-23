@@ -1,0 +1,180 @@
+body {
+    font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 10px;
+    background-color: #f4f7f6;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+}
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+}
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #34495e;
+    padding-bottom: 5px;
+    font-size: 1.4rem;
+}
+.header-azienda {
+    background: #eaeded;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.azienda-inputs {
+    flex: 1;
+}
+.box-lingua {
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.vista-intestazione {
+    display: none;
+    border-left: 4px solid #27ae60;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+.sezione-comandi {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.box-gestione {
+    background: #eef2f3;
+    padding: 15px;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.form-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-grid-mobile {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px; /* Evita lo zoom forzato automatico su iOS Safari */
+    box-sizing: border-box;
+    width: 100%;
+}
+button {
+    padding: 12px 15px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    display: inline-block;
+    text-align: center;
+}
+.btn-success { background-color: #27ae60; }
+.btn-primary { background-color: #2980b9; }
+.btn-danger { background-color: #e74c3c; }
+.btn-warning { background-color: #f39c12; color: #fff; }
+
+.backup-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lista-gusti-container {
+    margin-top: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+.gusto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+th, td {
+    border: 1px solid #bdc3c7;
+    padding: 8px;
+    text-align: left;
+    min-width: 80px;
+}
+th {
+    background-color: #34495e;
+    color: white;
+}
+tr:nth-child(even) { background-color: #f9f9f9; }
+.totale-riga { font-weight: bold; background-color: #eaeded; }
+.Azioni { text-align: center; width: 70px; }
+.table-btn { padding: 6px 10px; font-size: 0.85rem; }
+
+/* DA QUI IN POI: REGOLE PER SCHERMI GRANDI (PC E TABLET) */
+@media (min-width: 768px) {
+    body { margin: 20px; }
+    .container { padding: 30px; }
+    h1 { font-size: 2.2rem; }
+    .header-azienda { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+    .box-lingua { width: 200px; }
+    .sezione-comandi { display: grid; grid-template-columns: 1fr 2fr; }
+    .form-inline { flex-direction: row; align-items: flex-end; }
+    .form-inline .form-group { flex: 1; }
+    .form-grid-mobile { grid-template-columns: repeat(4, 1fr); }
+    .backup-buttons { flex-direction: row; }
+    input, select { font-size: 14px; padding: 8px; }
+    button { padding: 9px 15px; font-size: 0.9rem; }
+    table { font-size: 1rem; }
+    th, td { padding: 10px; }
+}
+
+@media print {
+    @page { size: landscape; margin: 1cm; }
+    .no-print { display: none !important; }
+    .vista-intestazione { display: block !important; }
+    .container { box-shadow: none; padding: 0; max-width: 100%; }
+    th { background-color: #34495e !important; color: white !important; -webkit-print-color-adjust: exact; }
+    .nascondi-in-stampa-colspan { display: none; }
+}

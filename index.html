@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Piano di Produzione Gelato</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header-azienda no-print">
+        <div class="azienda-inputs">
+            <h3 id="lbl-cfg-azienda">Configura Intestazione Azienda (Opzionale)</h3>
+            <div class="form-inline">
+                <input type="text" id="nome-azienda" placeholder="Nome della Gelateria / Ditta">
+                <input type="text" id="note-azienda" placeholder="Indirizzo, P.IVA...">
+                <button class="btn-primary table-btn" onclick="DittaManager.applica()" id="btn-applica">Applica</button>
+            </div>
+        </div>
+        <div class="box-lingua">
+            <label for="lingua-select">🌐 Lingua / Sprache</label>
+            <select id="lingua-select" onchange="LinguaManager.cambiaLingua(this.value)">
+                <option value="it">Italiano</option>
+                <option value="de">Deutsch</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="vista-intestazione" class="vista-intestazione">
+        <h2 id="print-nome-azienda"></h2>
+        <p id="print-note-azienda"></p>
+    </div>
+
+    <hr class="no-print">
+
+    <h1 id="titolo-principale">Giornale di Produzione Gelato 🍦</h1>
+    
+    <button class="btn-primary no-print" style="margin-bottom: 15px; width: 100%; max-width: 300px;" onclick="window.print()" id="btn-stampa">🖨️ Stampa / Salva in PDF</button>
+
+    <div class="sezione-comandi no-print">
+        <div class="box-gestione">
+            <h3 id="titolo-gusti">1. Gestione Lista Gusti</h3>
+            <div class="form-group">
+                <label for="nuovo-gusto" id="lbl-nuovo-gusto">Nuovo Gusto</label>
+                <div style="display: flex; gap: 5px;">
+                    <input type="text" id="nuovo-gusto" placeholder="Es. Stracciatella" style="flex: 1;">
+                    <button class="btn-success" onclick="GustiManager.aggiungi()" id="btn-aggiungi">Aggiungi</button>
+                </div>
+            </div>
+            <label id="lbl-gusti-attuali">Gusti Attuali:</label>
+            <div class="lista-gusti-container" id="lista-gusti"></div>
+        </div>
+
+        <div class="box-gestione">
+            <h3 id="titolo-produzione">2. Inserisci Produzione</h3>
+            <div class="form-grid-mobile">
+                <div class="form-group">
+                    <label for="data" id="lbl-data">Data Produzione</label>
+                    <input type="date" id="data">
+                </div>
+                <div class="form-group">
+                    <label for="gusto-select" id="lbl-gusto">Gusto</label>
+                    <select id="gusto-select"></select>
+                </div>
+                <div class="form-group">
+                    <label for="quantita" id="lbl-quantita">Quantità (Litri)</label>
+                    <input type="number" id="quantita" min="0.1" step="0.1" value="1.0">
+                </div>
+                <div class="form-group">
+                    <label for="lotto" id="lbl-lotto">Lotto Ingredienti</label>
+                    <input type="text" id="lotto" placeholder="Es. L2304">
+                </div>
+            </div>
+            <button class="btn-success" id="btn-salva-prod" onclick="ProdManager.salva()" style="width: 100%; margin-top: 10px; padding: 12px;">Registra Produzione</button>
+        </div>
+    </div>
+
+    <h2 id="titolo-registro">Registro Giornaliero</h2>
+    <div style="overflow-x: auto; width: 100%;">
+        <table id="tabella-produzione">
+            <thead>
+                <tr>
+                    <th id="th-data">Data</th>
+                    <th id="th-gusto">Gusto</th>
+                    <th id="th-quantita">Quantità Prodotta</th>
+                    <th id="th-lotto">Lotto Base</th>
+                    <th id="th-note">Note / Firma</th>
+                    <th class="Azioni no-print" id="th-azioni">Azioni</th>
+                </tr>
+            </thead>
+            <tbody id="corpo-tabella"></tbody>
+            <tfoot>
+                <tr class="totale-riga">
+                    <td colspan="2" style="text-align: right;" id="td-totale">Totale Complessivo:</td>
+                    <td id="totale-litri" style="color: #2980b9; font-weight: bold;">0.00 L</td>
+                    <td colspan="3" class="nascondi-in-stampa-colspan"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="box-gestione no-print" style="margin-top: 30px; background: #ebf5fb;">
+        <h3 id="titolo-backup">💾 Archivio e Salvataggio File Produzione</h3>
+        <p style="font-size: 0.9rem;" id="desc-backup">Scarica il file per salvare lo storico sul computer o caricalo per ripristinare i dati.</p>
+        <div class="backup-buttons">
+            <button class="btn-primary" onclick="SalvataggioManager.esportaDati()" id="btn-esporta">📥 Scarica File (.json)</button>
+            <button class="btn-warning" onclick="document.getElementById('input-file-import').click()" id="btn-importa">📤 Carica File Backup</button>
+            <input type="file" id="input-file-import" accept=".json" style="display: none;" onchange="SalvataggioManager.importaDati(event)">
+        </div>
+    </div>
+</div>
+
+<script src="lingua/linguamanager.js"></script>
+<script src="ditta/dittamanager.js"></script>
+<script src="gusti/gustimanager.js"></script>
+<script src="produzione/prodmanager.js"></script>
+<script src="salvataggio/salvataggiomanager.js"></script>
+<script src="core.js"></script>
+</body>
+</html>
