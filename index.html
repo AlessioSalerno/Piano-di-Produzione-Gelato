@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Piano di Produzione Gelato</title>
+    <title>Piano di Produzione Gelato - Vaschette e Litri Liberi</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -64,8 +64,12 @@
                     <select id="gusto-select"></select>
                 </div>
                 <div class="form-group">
-                    <label for="quantita" id="lbl-quantita">Quantità (Litri)</label>
-                    <input type="number" id="quantita" min="0.1" step="0.1" value="1.0">
+                    <label for="quantita" id="lbl-quantita-vaschette">Quantità (N° Vaschette)</label>
+                    <input type="number" id="quantita" min="1" step="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="litri-singoli" id="lbl-litri-singoli">Litri per Vaschetta</label>
+                    <input type="number" id="litri-singoli" min="0.01" step="0.01" value="4.17" placeholder="Es. 4.17">
                 </div>
                 <div class="form-group">
                     <label for="lotto" id="lbl-lotto">Lotto Ingredienti</label>
@@ -83,7 +87,9 @@
                 <tr>
                     <th id="th-data">Data</th>
                     <th id="th-gusto">Gusto</th>
-                    <th id="th-quantita">Quantità Prodotta</th>
+                    <th id="th-formato">Litri / Vaschetta</th>
+                    <th id="th-vaschette-calc">Vaschette Prodotte</th>
+                    <th id="th-quantita">Volume Totale (Litri)</th>
                     <th id="th-lotto">Lotto Base</th>
                     <th id="th-note">Note / Firma</th>
                     <th class="Azioni no-print" id="th-azioni">Azioni</th>
@@ -92,7 +98,8 @@
             <tbody id="corpo-tabella"></tbody>
             <tfoot>
                 <tr class="totale-riga">
-                    <td colspan="2" style="text-align: right;" id="td-totale">Totale Complessivo:</td>
+                    <td colspan="3" style="text-align: right;" id="td-totale">Totale Complessivo:</td>
+                    <td id="totale-vaschette" style="color: #e67e22;">0</td>
                     <td id="totale-litri" style="color: #2980b9; font-weight: bold;">0.00 L</td>
                     <td colspan="3" class="nascondi-in-stampa-colspan"></td>
                 </tr>
