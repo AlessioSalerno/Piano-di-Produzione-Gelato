@@ -15,14 +15,18 @@ window.LinguaManager = {
             titoloProduzione: "2. Inserisci Produzione",
             lblData: "Data Produzione",
             lblGusto: "Gusto",
-            lblQuantita: "Quantità (Litri)",
+            lblFormato: "Litri / Vaschetta",
+            lblLitriSingoli: "Litri per Vaschetta",
+            lblQuantitaVaschette: "Quantità (N° Vaschette)",
             lblLotto: "Lotto Ingredienti",
             btnRegistra: "Registra Produzione",
             btnApplicaModifiche: "Applica Modifiche",
             titoloRegistro: "Registro Giornaliero",
             thData: "Data",
             thGusto: "Gusto",
-            thQuantita: "Quantità Prodotta",
+            thFormato: "Litri / Vaschetta",
+            thVaschetteCalc: "Vaschette Prodotte",
+            thQuantita: "Volume Totale (Litri)",
             thLotto: "Lotto Base",
             thNote: "Note / Firma",
             thAzioni: "Azioni",
@@ -31,7 +35,7 @@ window.LinguaManager = {
             descBackup: "Scarica il file per salvare lo storico sul computer o caricalo per ripristinare i dati.",
             btnEsporta: "📥 Scarica File (.json)",
             btnImporta: "📤 Carica File Backup",
-            alertCampi: "Compila tutti i campi inserendo una quantità valida.",
+            alertCampi: "Compila tutti i campi inserendo valori validi per vaschette e litri.",
             confEliminaGusto: "Vuoi eliminare questo gusto?",
             confEliminaRiga: "Cancellare questa riga?",
             confImport: "Attenzione! Caricando questo file sovrascriverai i dati attuali. Vuoi procedere?",
@@ -49,14 +53,18 @@ window.LinguaManager = {
             titoloProduzione: "2. Produktion eintragen",
             lblData: "Produktionsdatum",
             lblGusto: "Eissorte",
-            lblQuantita: "Menge (Liter)",
+            lblFormato: "Liter / Behälter",
+            lblLitriSingoli: "Liter pro Behälter",
+            lblQuantitaVaschette: "Menge (Anzahl Behälter)",
             lblLotto: "Zutaten-Chargennummer",
             btnRegistra: "Produktion registrieren",
             btnApplicaModifiche: "Änderungen anwenden",
             titoloRegistro: "Tägliches Register",
             thData: "Datum",
             thGusto: "Eissorte",
-            thQuantita: "Produzierte Menge",
+            thFormato: "Liter / Behälter",
+            thVaschetteCalc: "Produzierte Behälter",
+            thQuantita: "Gesamtvolumen (Liter)",
             thLotto: "Basis-Charge",
             thNote: "Notizen / Unterschrift",
             thAzioni: "Aktionen",
@@ -65,7 +73,7 @@ window.LinguaManager = {
             descBackup: "Laden Sie die Datei herunter, um den Verlauf auf Ihrem Computer zu speichern, oder laden Sie sie hoch, um Daten wiederherzustellen.",
             btnEsporta: "📥 Datei herunterladen (.json)",
             btnImporta: "📤 Backup-Datei laden",
-            alertCampi: "Bitte füllen Sie alle Felder aus und geben Sie eine gültige Menge ein.",
+            alertCampi: "Bitte füllen Sie alle Felder aus und geben Sie gültige Werte für Behälter und Liter ein.",
             confEliminaGusto: "Möchten Sie diese Sorte löschen?",
             confEliminaRiga: "Diese Zeile löschen?",
             confImport: "Achtung! Durch das Laden dieser Datei werden die aktuellen Daten überschrieben. Fortfahren?",
@@ -83,7 +91,6 @@ window.LinguaManager = {
         this.linguaCorrente = lingua;
         localStorage.setItem(this.chiaveStorage, lingua);
         this.traduciInterfaccia();
-        // Ricarica la tabella produzione per aggiornare eventuali scritte dinamiche
         if(window.ProdManager) window.ProdManager.renderTabella();
     },
 
@@ -101,7 +108,8 @@ window.LinguaManager = {
         document.getElementById('titolo-produzione').innerText = t.titoloProduzione;
         document.getElementById('lbl-data').innerText = t.lblData;
         document.getElementById('lbl-gusto').innerText = t.lblGusto;
-        document.getElementById('lbl-quantita').innerText = t.lblQuantita;
+        document.getElementById('lbl-litri-singoli').innerText = t.lblLitriSingoli;
+        document.getElementById('lbl-quantita-vaschette').innerText = t.lblQuantitaVaschette;
         document.getElementById('lbl-lotto').innerText = t.lblLotto;
         
         const btnSalva = document.getElementById('btn-salva-prod');
@@ -114,6 +122,8 @@ window.LinguaManager = {
         document.getElementById('titolo-registro').innerText = t.titoloRegistro;
         document.getElementById('th-data').innerText = t.thData;
         document.getElementById('th-gusto').innerText = t.thGusto;
+        document.getElementById('th-formato').innerText = t.thFormato;
+        document.getElementById('th-vaschette-calc').innerText = t.thVaschetteCalc;
         document.getElementById('th-quantita').innerText = t.thQuantita;
         document.getElementById('th-lotto').innerText = t.thLotto;
         document.getElementById('th-note').innerText = t.thNote;
